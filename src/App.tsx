@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Main } from './container/Main';
+import styled from 'styled-components';
+import { Helmet } from "react-helmet";
+import { Input } from './container/Input';
+
+const StyledDiv = styled.div`
+text-align: center
+`
+
+const StyledHeader = styled.header`
+background-color: #282c34;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: calc(10px + 2vmin);
+color: white
+`
+
 
 const App: React.FC = () => {
+
+  const [title, setTitle] = useState('');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledDiv>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{title}</title>
+      </Helmet>
+      <StyledHeader>
+        <Main />
+        <Input setTitle={setTitle} />
+      </StyledHeader>
+    </StyledDiv>
   );
 }
 
