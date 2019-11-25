@@ -1,40 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Main } from './container/Main';
 import styled from 'styled-components';
-import { Helmet } from "react-helmet";
-import { Input } from './container/Input';
+import { Helmet } from 'react-helmet';
 
 const StyledDiv = styled.div`
 text-align: center
-`
+`;
 
-const StyledHeader = styled.header`
-background-color: #282c34;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-size: calc(10px + 2vmin);
-color: white
-`
+const StyledHeader: any = styled('header')((props: IProps): any => ({
+  'background-color': '#282c34',
+  'min-height': '100vh',
+  'display': 'flex',
+  'flex-direction': 'column',
+  'align-items': 'center',
+  'justify-content': 'center',
+  'font-size': 'calc(10px + 2vmin)',
+  'color': props.color
+}));
 
+interface IProps {
+  color: string;
+}
 
-const App: React.FC = () => {
+class App extends React.Component {
 
-  const [title, setTitle] = useState('');
-  return (
-    <StyledDiv>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{title}</title>
-      </Helmet>
-      <StyledHeader>
-        <Main />
-        <Input setTitle={setTitle} />
-      </StyledHeader>
-    </StyledDiv>
-  );
+  private displayName = 'App';
+
+  public render() {
+    return (
+      <StyledDiv>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{this.displayName}</title>
+        </Helmet>
+        <StyledHeader color={'red'}>
+          <Main />
+        </StyledHeader>
+      </StyledDiv>
+    );
+  }
+
 }
 
 export default App;
